@@ -10,10 +10,16 @@ const port = 3000;
 app.use(morgan("combined"));
 
 //template engine
-app.engine("handlebars", handlebars.engine());
+app.engine("handlebars", handlebars.engine({
+    extname: ".oce",
+}));
 app.set("view engine", "handlebars");
 app.set("views", path.join(__dirname, "resources/views"));
-console.log("__dirname", __dirname);
+
+console.log(
+  'path.join(__dirname, "resources/views"): ',
+  path.join(__dirname, "resources/views")
+);
 
 app.get("/", (req, res) => {
   res.render("home");
